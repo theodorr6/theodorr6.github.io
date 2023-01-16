@@ -8,7 +8,7 @@
     background-clip: border-box; */
   /* background-image: linear-gradient(180deg, red 70%, blue 60%, rgba(0,0,0,0.5)); */
   /* background-image: radial-gradient(ellipse farthest-corner at 20% 50%, red, blue 70%, green); */
-  width: auto;
+  width: 100%;
   height: 33vh;
   /* border: 5px dashed red; */
   position: relative;
@@ -45,6 +45,11 @@
   padding: 1rem;
   margin: 0.5rem 0;
   width: 100%;
+}
+
+.plan:hover,
+.plan:active {
+  animation: elevate 1s forwards;
 }
 
 .plan--highlighted {
@@ -90,19 +95,25 @@
 @media (min-width: 40rem) {
   .plan__list {
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .plan {
-    display: inline-block;
     width: 30%;
-    vertical-align: middle;
     min-width: 12rem;
     max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 28rem;
   }
 
   .plan--highlighted {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    height: 30rem;
+    z-index: 50;
   }
 }
 
@@ -143,10 +154,12 @@
 
 @media (min-width: 40rem) {
   .key-feature {
-    display: inline-block;
     width: 30%;
     max-width: 25rem;
-    vertical-align: top;
+  }
+  .key-feature__list {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -156,7 +169,9 @@
 
 .modal {
   position: fixed;
-  display: none;
+  opacity: 0;
+  transform: translateY(-3rem);
+  transition: opacity 0.5s ease-out, transform 200ms ease-out;
   z-index: 200;
   top: 20%;
   left: 30%;
@@ -201,4 +216,13 @@
 .modal__action--negative:active {
   background: #ff5454;
   border-color: #ff5454;
+}
+
+@keyframes elevate {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1.1rem);
+  }
 }
